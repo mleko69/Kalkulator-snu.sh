@@ -5,7 +5,7 @@ printf "O której chcesz wstać? "
 read godzina
 
 function obliczenia {
-#Dane
+#Dane stałe
 nzmienna="01:30"
 nzmienna2="03:00"
 nzmienna3="04:30"
@@ -13,7 +13,7 @@ nzmienna4="06:00"
 nzmienna5="07:30"
 nzmiennaZZZ="00:15" #czas na zaśnięcie
 
-#Skrypt konwertuje powyższe stałe i zmienną na sekundy (potrzebne do obliczeń):
+#Skrypt konwertuje stałe i zmienną z funkcji if na sekundy (potrzebne do obliczeń):
 PodanaGodzina=$(date -u -d "$zmienna" +"%s")
 Const=$(date -u -d "$nzmienna" +"%s")
 Const2=$(date -u -d "$nzmienna2" +"%s")
