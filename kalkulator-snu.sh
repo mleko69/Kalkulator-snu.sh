@@ -1,11 +1,13 @@
 #!/bin/bash
 
+#Wersja 0.1
+
 #Prosty kalkulator snu. Wyświetla o której należy się położyć by przespać odpowiednią ilość cykli snu (1 cykl: ~90 minut):
 printf "O której chcesz wstać? "
 read godzina
 
 function obliczenia {
-#Dane stałe
+#Stałe
 nzmienna="01:30"
 nzmienna2="03:00"
 nzmienna3="04:30"
