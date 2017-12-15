@@ -10,27 +10,27 @@ printf "Twój wybór: "
 read tryb
 
 echo #pusta przestrzeń dla estetyki
-echo "Zanim zaczniemy. Jak szybko zasypiasz? (w minutach)"
-echo "1) Ok 15 minut. (Domyślne)"
+echo "Zanim zaczniemy. Jak szybko zasypiasz? (W minutach)"
+echo "1) Około 15 minut. (Domyślne)"
 echo "2) Trochę dłużej/krócej. (Własne)"
 printf "Twój wybór: "
 read TrybZasypiania
 
 function print1 {
   echo #pusta przestrzeń dla estetyki
-  printf "Ok, o której chcesz wstać? "
+  printf "W porządku, o której chcesz wstać? "
   read godzina
 }
 
 function print2 {
  echo  #pusta przestrzeń dla estetyki
- printf "Ok, o której chcesz się położyć? "
+ printf "W porządku, o której chcesz się położyć? "
  read godzina
 }
 
 function IleZasypia {
   echo  #pusta przestrzeń dla estetyki
-  printf "Ok, ile minut zasypiasz? (np. dla 20 minut wpisz 00:20) "
+  printf "Ok, ile minut zasypiasz? (Np. dla 20 minut napisz 00:20) "
   read CzasZasypiania
 }
 
@@ -62,7 +62,7 @@ wynik5=$(date -u -d "0 $PodanaGodzina sec - $Const5 sec - $ConstZZZ sec " +"%H:%
 
 #Output kalkulacji:
 echo #pusta przestrzeń dla estetyki
-echo "Powinieneś/aś się położyć o tych godzinach (zakładając że przeciętny człowiek potrzebuje ok. 15 minut na zaśnięcie):"
+echo "Powinieneś/aś się położyć o tych godzinach:"
 echo " $wynik" "(Jeden cykl: 1,5 godziny snu)"
 echo " $wynik2" "(Dwa cykle: 3 godziny snu)"
 echo " $wynik3" "(Trzy cykle: 4,5 godziny snu)"
@@ -99,7 +99,7 @@ wynik5=$(date -u -d "0 $PodanaGodzina sec + $Const5 sec + $ConstZZZ sec " +"%H:%
 
 #Output kalkulacji:
 echo #pusta przestrzeń dla estetyki
-echo "Powinieneś/aś wstać o tych godzinach (zakładając że przeciętny człowiek potrzebuje ok. 15 minut na zaśnięcie):"
+echo "Powinieneś/aś wstać o tych godzinach:"
 echo " $wynik" "(Jeden cykl: 1,5 godziny snu)"
 echo " $wynik2" "(Dwa cykle: 3 godziny snu)"
 echo " $wynik3" "(Trzy cykle: 4,5 godziny snu)"
@@ -183,27 +183,27 @@ echo #pusta przestrzeń dla estetyki
 }
 
 #Funkcje if:
-if [ "$tryb" -eq "1" -a "$TrybZasypiania" = "1" ] ; then
+if [ "$tryb" -eq "1" -a "$TrybZasypiania" -eq "1" ] ; then
 print1 && obliczenia
-elif [ "$tryb" -eq "1" -a "$TrybZasypiania" = "1" ] ; then
+elif [ "$tryb" -eq "1" -a "$TrybZasypiania" -eq "1" ] ; then
   : obliczenia2 obliczeniaCust obliczeniaCust2 IleZasypia #zapobiega wykonywaniu niepotrzebnych działań
 fi
 
-if [ "$tryb" -eq "1" -a "$TrybZasypiania" = "2" ] ; then
+if [ "$tryb" -eq "1" -a "$TrybZasypiania" -eq "2" ] ; then
   IleZasypia && print1 && obliczeniaCust
-elif [ "$tryb" -eq "1" -a "$TrybZasypiania" = "1" ] ; then
+elif [ "$tryb" -eq "1" -a "$TrybZasypiania" -eq "1" ] ; then
   : obliczenia obliczenia2 obliczeniaCust2 #zapobiega wykonywaniu niepotrzebnych działań
 fi
 
-if [ "$tryb" -eq "2" -a "$TrybZasypiania" = "1" ] ; then
+if [ "$tryb" -eq "2" -a "$TrybZasypiania" -eq "1" ] ; then
 print2 && obliczenia2
-elif [ "$tryb" -eq "1" -a "$TrybZasypiania" = "1" ] ; then
+elif [ "$tryb" -eq "1" -a "$TrybZasypiania" -eq "1" ] ; then
   : obliczenia obliczeniaCust obliczeniaCust2 IleZasypia #zapobiega wykonywaniu niepotrzebnych działań
 fi
 
-if [ "$tryb" -eq "2" -a "$TrybZasypiania" = "2" ] ; then
+if [ "$tryb" -eq "2" -a "$TrybZasypiania" -eq "2" ] ; then
   IleZasypia && print2 && obliczeniaCust2
-elif [ "$tryb" -eq "2" -a "$TrybZasypiania" = "2" ] ; then
+elif [ "$tryb" -eq "2" -a "$TrybZasypiania" -eq "2" ] ; then
   : obliczenia obliczenia2 obliczeniaCust #zapobiega wykonywaniu niepotrzebnych działań
 fi
 
