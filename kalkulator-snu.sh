@@ -30,7 +30,7 @@ function print2 {
 
 function IleZasypia {
   echo  #pusta przestrzeń dla estetyki
-  printf "Ok, ile minut zasypiasz? "
+  printf "Ok, ile minut zasypiasz? (np. dla 20 minut wpisz 00:20) "
   read CzasZasypiania
 }
 
