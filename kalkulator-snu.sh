@@ -1,9 +1,9 @@
 #!/bin/bash
 
-#Wersja 0.9
+#Wersja 0.9.1
 
 #Prosty kalkulator snu. Wyświetla o której należy się położyć by przespać odpowiednią ilość cykli snu (1 cykl: ~90 minut):
-echo "Wybierz jedną z opcji: "
+echo "Cześć $USER! Wybierz jedną z opcji: "
 echo "1) Chcę dowiedzieć się o której się położyć."
 echo "2) Chcę dowiedzieć się o której wstać."
 printf "Twój wybór: "
