@@ -1,36 +1,39 @@
 #!/bin/bash
 
-#Wersja 0.9.2
+#Wersja 0.9.3
 
 #Prosty kalkulator snu. Wyświetla o której należy się położyć by przespać odpowiednią ilość cykli snu (1 cykl: ~90 minut):
 echo "Cześć $USER! Wybierz jedną z opcji: "
 echo "1) Chcę dowiedzieć się o której się położyć."
 echo "2) Chcę dowiedzieć się o której wstać."
+echo "3) Chcę wyjść z programu."
 printf "Twój wybór: "
 read tryb
 
+function PytanieOZasypianie {
 echo #pusta przestrzeń dla estetyki
-echo "Zanim zaczniemy. Jak szybko zasypiasz? (W minutach)"
-echo "1) Około 15 minut. (Domyślne)"
+echo "Zanim zaczniemy. Jak szybko zasypiasz? (w minutach)"
+echo "1) Ok 15 minut. (Domyślne)"
 echo "2) Trochę dłużej/krócej. (Własne)"
 printf "Twój wybór: "
 read TrybZasypiania
+}
 
 function print1 {
   echo #pusta przestrzeń dla estetyki
-  printf "W porządku, o której chcesz wstać? "
+  printf "Ok, o której chcesz wstać? "
   read godzina
 }
 
 function print2 {
  echo  #pusta przestrzeń dla estetyki
- printf "W porządku, o której chcesz się położyć? "
+ printf "Ok, o której chcesz się położyć? "
  read godzina
 }
 
 function IleZasypia {
   echo  #pusta przestrzeń dla estetyki
-  printf "Ok, ile minut zasypiasz? (Np. dla 20 minut napisz 00:20) "
+  printf "Ok, ile minut zasypiasz? (Np. dla 20 minut napisz 00:20): "
   read CzasZasypiania
 }
 
@@ -62,7 +65,7 @@ wynik5=$(date -u -d "0 $PodanaGodzina sec - $Const5 sec - $ConstZZZ sec " +"%H:%
 
 #Output kalkulacji:
 echo #pusta przestrzeń dla estetyki
-echo "Powinieneś/aś się położyć o tych godzinach:"
+echo "Powinieneś/aś się położyć o tych godzinach (zakładając że przeciętny człowiek potrzebuje ok. 15 minut na zaśnięcie):"
 echo " $wynik" "(Jeden cykl: 1,5 godziny snu)"
 echo " $wynik2" "(Dwa cykle: 3 godziny snu)"
 echo " $wynik3" "(Trzy cykle: 4,5 godziny snu)"
@@ -99,7 +102,7 @@ wynik5=$(date -u -d "0 $PodanaGodzina sec + $Const5 sec + $ConstZZZ sec " +"%H:%
 
 #Output kalkulacji:
 echo #pusta przestrzeń dla estetyki
-echo "Powinieneś/aś wstać o tych godzinach:"
+echo "Powinieneś/aś wstać o tych godzinach (zakładając że przeciętny człowiek potrzebuje ok. 15 minut na zaśnięcie):"
 echo " $wynik" "(Jeden cykl: 1,5 godziny snu)"
 echo " $wynik2" "(Dwa cykle: 3 godziny snu)"
 echo " $wynik3" "(Trzy cykle: 4,5 godziny snu)"
@@ -183,28 +186,32 @@ echo #pusta przestrzeń dla estetyki
 }
 
 #Funkcje if:
-if [ "$tryb" -eq "1" -a "$TrybZasypiania" -eq "1" ] ; then
-print1 && obliczenia
-elif [ "$tryb" -eq "1" -a "$TrybZasypiania" -eq "1" ] ; then
-  : obliczenia2 obliczeniaCust obliczeniaCust2 IleZasypia #zapobiega wykonywaniu niepotrzebnych działań
+if [ "$tryb" -eq "1" -o "$tryb" -eq "2" ] ; then
+  PytanieOZasypianie
+elif [ "$tryb" -eq "3" ] ; then
+    : PytanieOZasypianie print1 print2 IleZasypia obliczenia obliczenia2 obliczeniaCust obliczeniaCust2
+    echo "Ok, zamykam.."
 fi
 
-if [ "$tryb" -eq "1" -a "$TrybZasypiania" -eq "2" ] ; then
+#Funkcje if zwiazane z obliczeniami:
+if [ "$tryb" -eq "1" -a "$TrybZasypiania" = "1" ] ; then
+  print1 && obliczenia
+  : obliczenia2 obliczeniaCust obliczeniaCust2 IleZasypia PytanieOZasypianie #zapobiega wykonywaniu niepotrzebnych działań
+fi
+
+if [ "$tryb" -eq "1" -a "$TrybZasypiania" = "2" ] ; then
   IleZasypia && print1 && obliczeniaCust
-elif [ "$tryb" -eq "1" -a "$TrybZasypiania" -eq "2" ] ; then
-  : obliczenia obliczenia2 obliczeniaCust2 #zapobiega wykonywaniu niepotrzebnych działań
+  : obliczenia obliczenia2 obliczeniaCust2 PytanieOZasypianie #zapobiega wykonywaniu niepotrzebnych działań
 fi
 
-if [ "$tryb" -eq "2" -a "$TrybZasypiania" -eq "1" ] ; then
-print2 && obliczenia2
-elif [ "$tryb" -eq "2" -a "$TrybZasypiania" -eq "1" ] ; then
-  : obliczenia obliczeniaCust obliczeniaCust2 IleZasypia #zapobiega wykonywaniu niepotrzebnych działań
+if [ "$tryb" -eq "2" -a "$TrybZasypiania" = "1" ] ; then
+  print2 && obliczenia2
+  : obliczenia obliczeniaCust obliczeniaCust2 IleZasypia PytanieOZasypianie #zapobiega wykonywaniu niepotrzebnych działań
 fi
 
-if [ "$tryb" -eq "2" -a "$TrybZasypiania" -eq "2" ] ; then
+if [ "$tryb" -eq "2" -a "$TrybZasypiania" = "2" ] ; then
   IleZasypia && print2 && obliczeniaCust2
-elif [ "$tryb" -eq "2" -a "$TrybZasypiania" -eq "2" ] ; then
-  : obliczenia obliczenia2 obliczeniaCust #zapobiega wykonywaniu niepotrzebnych działań
+  : obliczenia obliczenia2 obliczeniaCust PytanieOZasypianie #zapobiega wykonywaniu niepotrzebnych działań
 fi
 
 exit
