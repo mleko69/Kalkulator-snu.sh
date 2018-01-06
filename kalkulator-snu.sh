@@ -190,7 +190,6 @@ if [ "$tryb" -eq "1" -o "$tryb" -eq "2" ] ; then
   PytanieOZasypianie
 elif [ "$tryb" -eq "3" ] ; then
     : PytanieOZasypianie print1 print2 IleZasypia obliczenia obliczenia2 obliczeniaCust obliczeniaCust2
-    echo "Ok, zamykam.."
 fi
 
 #Funkcje if zwiazane z obliczeniami:
