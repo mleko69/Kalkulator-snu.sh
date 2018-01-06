@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#Wersja 0.9.1
+#Wersja 0.9.2
 
 #Prosty kalkulator snu. Wyświetla o której należy się położyć by przespać odpowiednią ilość cykli snu (1 cykl: ~90 minut):
 echo "Cześć $USER! Wybierz jedną z opcji: "
@@ -191,13 +191,13 @@ fi
 
 if [ "$tryb" -eq "1" -a "$TrybZasypiania" -eq "2" ] ; then
   IleZasypia && print1 && obliczeniaCust
-elif [ "$tryb" -eq "1" -a "$TrybZasypiania" -eq "1" ] ; then
+elif [ "$tryb" -eq "1" -a "$TrybZasypiania" -eq "2" ] ; then
   : obliczenia obliczenia2 obliczeniaCust2 #zapobiega wykonywaniu niepotrzebnych działań
 fi
 
 if [ "$tryb" -eq "2" -a "$TrybZasypiania" -eq "1" ] ; then
 print2 && obliczenia2
-elif [ "$tryb" -eq "1" -a "$TrybZasypiania" -eq "1" ] ; then
+elif [ "$tryb" -eq "2" -a "$TrybZasypiania" -eq "1" ] ; then
   : obliczenia obliczeniaCust obliczeniaCust2 IleZasypia #zapobiega wykonywaniu niepotrzebnych działań
 fi
 
