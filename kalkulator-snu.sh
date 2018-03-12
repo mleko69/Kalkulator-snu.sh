@@ -4,8 +4,8 @@
 
 #Prosty kalkulator snu. Wyświetla o której należy się położyć by przespać odpowiednią ilość cykli snu (1 cykl: ~90 minut):
 echo "Cześć $USER! Wybierz jedną z opcji: "
-echo "1) Chcę dowiedzieć się o której się położyć."
-echo "2) Chcę dowiedzieć się o której wstać."
+echo "1) Podaję godzinę o której chcę wstać (program podpowie o której się położyć)."
+echo "2) Podaję godzinę o której chcę się położyć (program podpowie o której wstać)."
 echo "3) Chcę wyjść z programu."
 printf "Twój wybór: "
 read tryb
@@ -189,7 +189,7 @@ echo #pusta przestrzeń dla estetyki
 if [ "$tryb" -eq "1" -o "$tryb" -eq "2" ] ; then
   PytanieOZasypianie
 elif [ "$tryb" -eq "3" ] ; then
-    : PytanieOZasypianie print1 print2 IleZasypia obliczenia obliczenia2 obliczeniaCust obliczeniaCust2
+    : PytanieOZasypianie print1 print2 IleZasypia obliczenia obliczenia2 obliczeniaCust obliczeniaCust2 #skrypt przerywa działanie
 fi
 
 #Funkcje if zwiazane z obliczeniami:
